@@ -1,5 +1,6 @@
 package com.junglechess.controller;
 
+import com.junglechess.db.DatabaseManager;
 import com.junglechess.game.Game;
 import com.junglechess.model.Player;
 import com.junglechess.view.ConsoleView;
@@ -13,25 +14,47 @@ import java.util.Scanner;
 public class GameController {
     private Game game;
     private Scanner scanner;
-
-    /**
+    private DatabaseManager dbManager;    /**
      * Constructor to initialize the GameController with a Game instance.
      * @param game the game instance to control
      */
     public GameController(Game game) {
         this.game = game;
         this.scanner = new Scanner(System.in);
-    }
-
-    /**
+        this.dbManager = new DatabaseManager();
+    }    /**
      * Main game loop that runs the entire game session.
      */
     public void run() {
-        // Initialization
+        // Initialize database
+        dbManager.connect();
+        dbManager.setupTables();
+        
+        // Display welcome message
         displayWelcomeMessage();
         
-        // Optional: For now, we'll skip authentication until database integration
-        ConsoleView.showMessage("Starting game with Player 1 (Red) and Player 2 (Blue)...");
+        // Player authentication
+        Player player1 = authenticatePlayer("Player 1");
+        if (player1 == null) {
+            System.out.println("Authentication failed for Player 1. Exiting...");
+            return;
+        }
+        
+        Player player2 = authenticatePlayer("Player 2");
+        if (player2 == null) {
+            System.out.println("Authentication failed for Player 2. Exiting...");
+            return;
+        }
+        
+        // Update the game with authenticated players
+        game = new Game(player1, player2);
+        
+        // Display player statistics
+        System.out.println("\n=== PLAYER STATISTICS ===");
+        dbManager.getPlayerHistory(player1.getName());
+        dbManager.getPlayerHistory(player2.getName());
+        
+        ConsoleView.showMessage("Starting game with " + player1.getName() + " (Red) vs " + player2.getName() + " (Blue)...");
         ConsoleView.showMessage("");
           // Main game loop
         while (!game.isGameOver()) {
@@ -48,20 +71,30 @@ public class GameController {
                 // User chose to quit
                 break;
             }
-        }
-        
+        }        
         // Game over - display final state
         if (game.isGameOver()) {
             ConsoleView.displayBoard(game.getBoard());
             
-            // Determine winner based on current player (they just made the winning move)
+            // Determine winner and loser
             Player winner = game.getCurrentPlayer();
+            Player loser = (winner == game.getPlayer1()) ? game.getPlayer2() : game.getPlayer1();
+            
             ConsoleView.displayGameOver(winner);
+            
+            // Save game result to database
+            dbManager.saveGameResult(winner, loser);
+            
+            // Display updated statistics
+            System.out.println("\n=== UPDATED STATISTICS ===");
+            dbManager.getPlayerHistory(winner.getName());
+            dbManager.getPlayerHistory(loser.getName());
         } else {
             ConsoleView.showMessage("Game ended by user. Thanks for playing!");
         }
         
         // Clean up
+        dbManager.close();
         scanner.close();
     }    /**
      * Displays the welcome message and initial instructions.
@@ -197,12 +230,74 @@ public class GameController {
         // Validate row (1-9)
         if (rowChar < '1' || rowChar > '9') {
             return null;
-        }
-
-        // Convert to 0-based indices
+        }        // Convert to 0-based indices
         int col = colChar - 'A';  // A=0, B=1, ..., G=6
         int row = rowChar - '1';  // 1=0, 2=1, ..., 9=8
-
+        
         return new int[]{row, col};
+    }
+
+    /**
+     * Handles player authentication (login or registration).
+     * @param playerLabel the label for the player (e.g., "Player 1")
+     * @return authenticated Player object or null if authentication fails
+     */
+    private Player authenticatePlayer(String playerLabel) {
+        System.out.println("\n=== " + playerLabel + " Authentication ===");
+        
+        while (true) {
+            System.out.print("Do you want to (L)ogin or (C)reate a new account? (L/C): ");
+            String choice = scanner.nextLine().trim().toLowerCase();
+            
+            if (choice.equals("l") || choice.equals("login")) {
+                return handleLogin();
+            } else if (choice.equals("c") || choice.equals("create")) {
+                if (handleCreateAccount()) {
+                    System.out.println("Account created! Now please log in with your new credentials.");
+                    return handleLogin();
+                }
+                // If account creation failed, continue the loop
+            } else {
+                System.out.println("Please enter 'L' for login or 'C' to create account.");
+            }
+        }
+    }
+
+    /**
+     * Handles user login.
+     * @return Player object if login successful, null otherwise
+     */
+    private Player handleLogin() {
+        System.out.print("Enter your username: ");
+        String username = scanner.nextLine().trim();
+        
+        System.out.print("Enter password: ");
+        String password = scanner.nextLine().trim();
+        
+        return dbManager.loginPlayer(username, password);
+    }
+
+    /**
+     * Handles new account creation.
+     * @return true if account created successfully, false otherwise
+     */
+    private boolean handleCreateAccount() {
+        System.out.print("Choose a username: ");
+        String username = scanner.nextLine().trim();
+        
+        if (username.isEmpty()) {
+            System.out.println("Username cannot be empty.");
+            return false;
+        }
+        
+        System.out.print("Choose a password: ");
+        String password = scanner.nextLine().trim();
+        
+        if (password.isEmpty()) {
+            System.out.println("Password cannot be empty.");
+            return false;
+        }
+        
+        return dbManager.createPlayer(username, password);
     }
 }

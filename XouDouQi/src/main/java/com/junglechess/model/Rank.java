@@ -31,4 +31,12 @@ public enum Rank {
     public int getLevel() {
         return level;
     }
+    
+    /**
+     * Get the strength value of the rank (alias for getLevel)
+     * @return the value
+     */
+    public int getValue() {
+        return level;
+    }
 }
