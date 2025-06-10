@@ -7,7 +7,7 @@ A complete two-player command-line implementation of **Xou Dou Qi** (鬥獸棋),
 ### YouTube Video Demo
 Watch the complete gameplay demonstration and tutorial:
 
-[![Xou Dou Qi Game Demo](https://img.youtube.com/vi/nBKGPlFCPr0/maxresdefault.jpg)](https://youtu.be/nBKGPlFCPr0?si=tE_Hwumf7tTGw4eA)
+[[Xou Dou Qi Game Demo](https://img.youtube.com/vi/nBKGPlFCPr0/maxresdefault.jpg)](https://youtu.be/nBKGPlFCPr0?si=tE_Hwumf7tTGw4eA)
 
 🎬 **[Click here to watch the full gameplay demonstration on YouTube →](https://youtu.be/nBKGPlFCPr0?si=tE_Hwumf7tTGw4eA)**
 
