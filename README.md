@@ -1,37 +1,37 @@
-# 🐾 Xou Dou Qi (Jungle Chess) - Java Implementation
+# Xou Dou Qi (Jungle Chess) - Java Implementation
 
 A complete two-player command-line implementation of **Xou Dou Qi** (鬥獸棋), also known as *Dou Shou Qi* or *Jungle Chess*. This classic Chinese strategy board game features animal pieces with unique movement and capture rules in a jungle-themed battlefield.
 
-## 🎮 Game Overview
+## Game Overview
 
 Xou Dou Qi is an ancient Chinese board game where two players command armies of animals trying to reach the opponent's sanctuary. Each animal has different strengths and special abilities, creating a rich strategic experience.
 
-### 🏆 Victory Conditions
+### Victory Conditions
 - **Primary Goal**: Move any of your pieces into the opponent's sanctuary (den)
 - **Alternative**: Capture all opponent pieces (rare)
 
-## 🐯 Game Pieces and Hierarchy
+## Game Pieces and Hierarchy
 
 Animals are ranked by strength, with higher-ranked animals capturing lower-ranked ones:
 
 | Rank | Animal | Strength | Special Abilities |
 |------|--------|----------|-------------------|
-| 8 | 🐘 Elephant | Highest | Cannot be captured by any animal except Rat |
-| 7 | 🦁 Lion | Very High | Can jump across rivers horizontally/vertically |
-| 6 | 🐅 Tiger | High | Can jump across rivers horizontally/vertically |
-| 5 | 🐆 Panther | Medium-High | Standard movement |
-| 4 | 🐕 Dog | Medium | Standard movement |
-| 3 | 🐺 Wolf | Medium-Low | Standard movement |
-| 2 | 🐱 Cat | Low | Standard movement |
-| 1 | 🐭 Rat | Lowest | Can enter rivers, can capture Elephant |
+| 8 | ELE (Elephant) | Highest | Cannot be captured by any animal except Rat |
+| 7 | LIO (Lion) | Very High | Can jump across rivers horizontally/vertically |
+| 6 | TIG (Tiger) | High | Can jump across rivers horizontally/vertically |
+| 5 | PAN (Panther) | Medium-High | Standard movement |
+| 4 | CHI (Dog) | Medium | Standard movement |
+| 3 | LOU (Wolf) | Medium-Low | Standard movement |
+| 2 | CHA (Cat) | Low | Standard movement |
+| 1 | RAT (Rat) | Lowest | Can enter rivers, can capture Elephant |
 
-### 🎯 Special Rules
+### Special Rules
 - **Rat vs Elephant**: The tiny Rat can capture the mighty Elephant!
 - **River Access**: Only Rats can enter and move through river squares
 - **Jumping**: Lions and Tigers can jump over rivers (if no Rat blocks the path)
 - **Traps**: Pieces in enemy traps lose all defensive power and can be captured by any enemy piece
 
-## 🗺️ Board Layout
+## Board Layout
 
 ```
    A B C D E F G
@@ -50,33 +50,40 @@ Animals are ranked by strength, with higher-ranked animals capturing lower-ranke
 - `[R]` = River - Only Rats can enter
 - `-` = Normal land square
 
-## 🔍 Features
+**Console Display Symbols:**
+- `***` = Sanctuaries (Red/Blue colored)
+- `###` = Traps (Yellow colored)
+- `~~~` = River (Cyan colored)
+- `ELE`, `LIO`, `TIG`, etc. = Animal pieces (Red/Blue colored)
+- `-` = Normal land square
 
-### 🎮 Core Game Features
+## Features
+
+### Core Game Features
 - **Complete Game Logic**: Full implementation of all Jungle Chess rules
-- **Enhanced Console UI**: Professional ANSI-colored interface with comprehensive legend
+- **Cross-Platform Console UI**: ASCII-compatible interface with ANSI colors for Windows/Mac/Linux
 - **Input Validation**: Comprehensive move validation with helpful error messages
 - **Interactive Help System**: Built-in command reference with detailed rules and tips
 - **Enhanced User Experience**: Clear prompts, formatted current player display, and move feedback
 - **MVC Architecture**: Clean separation of model, view, and controller
 - **Turn Management**: Automatic player switching with visual indicators
 
-### 🗄️ Database Integration Features
-- **🔗 SQLite Integration**: Complete database persistence with JDBC driver
-- **👤 User Authentication**: Secure player registration and login system
-- **📊 Match History Tracking**: Automatic game result storage with timestamps
-- **📈 Player Statistics**: Real-time win/loss calculation and display
-- **🔒 Data Persistence**: Robust SQLite database with proper schema
-- **🛡️ Error Handling**: Comprehensive database exception management
-- **✅ Data Validation**: Username uniqueness and credential verification
-- **🔧 Resource Management**: Proper connection handling and cleanup
+### Database Integration Features
+- **SQLite Integration**: Complete database persistence with JDBC driver
+- **User Authentication**: Secure player registration and login system
+- **Match History Tracking**: Automatic game result storage with timestamps
+- **Player Statistics**: Real-time win/loss calculation and display
+- **Data Persistence**: Robust SQLite database with proper schema
+- **Error Handling**: Comprehensive database exception management
+- **Data Validation**: Username uniqueness and credential verification
+- **Resource Management**: Proper connection handling and cleanup
 
-### 🚀 Distribution Features
+### Distribution Features
 - **Executable JAR**: Ready-to-run JAR file for easy distribution
 - **Batch Scripts**: Convenient launch scripts with proper classpath
-- **Cross-Platform**: Works on Windows, macOS, and Linux
+- **Cross-Platform Compatibility**: ASCII-safe display works on all terminal environments
 
-## 🎮 Game Commands
+## Game Commands
 
 Once the game starts, you can use these commands:
 
@@ -84,21 +91,22 @@ Once the game starts, you can use these commands:
 - **`help`** - Display comprehensive help with rules, tips, and examples
 - **`quit`** or **`exit`** - Exit the game (with confirmation prompt)
 
-### 📋 Coordinate System
+### Coordinate System
 - **Columns**: A-G (left to right)
 - **Rows**: 1-9 (top to bottom)  
 - **Examples**: A1 (top-left), G9 (bottom-right), D5 (center)
 
-## 🎨 Console Interface Features
+## Console Interface Features
 
 The enhanced console interface includes:
-- **🏷️ Interactive Legend**: Displays once at startup with color-coded symbols
-- **🎯 Current Player Display**: Clear turn indicators with player colors
-- **💬 Enhanced Prompts**: Helpful input guidance with command examples
-- **✅ Move Feedback**: Success confirmations and detailed error explanations
-- **📚 Comprehensive Help**: Complete rules reference with beginner tips
+- **Interactive Legend**: Displays once at startup with color-coded symbols
+- **Current Player Display**: Clear turn indicators with player colors
+- **Enhanced Prompts**: Helpful input guidance with command examples
+- **Move Feedback**: Success confirmations and detailed error explanations
+- **Comprehensive Help**: Complete rules reference with beginner tips
+- **ASCII Compatibility**: All symbols display correctly on Windows/Mac/Linux terminals
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 - **Language:** Java 11+
 - **Build Tool:** Maven 3.6+
@@ -106,30 +114,29 @@ The enhanced console interface includes:
 - **Architecture:** Model-View-Controller (MVC)
 - **Testing:** JUnit + Custom Database Tests
 - **Data Persistence:** Local SQLite database file (`junglechess.db`)
-- **UI:** Enhanced console interface with ANSI colors
+- **UI:** ASCII-compatible console interface with ANSI colors
 - **Dependencies:** SQLite JDBC, JUnit (test scope)
+- **Compatibility:** Cross-platform support for Windows, macOS, and Linux terminals
 
-## 💾 Database Features
+## Database Features
 
-### 🔐 User Management System
+### User Management System
 - **Player Registration**: Create accounts with unique usernames
 - **Secure Authentication**: Password-based login system
 - **Duplicate Prevention**: Automatic handling of existing username conflicts
 - **Account Validation**: Username and password requirement enforcement
 
-### 📊 Match Tracking System
+### Match Tracking System
 - **Automatic Result Storage**: Game outcomes saved immediately after completion
 - **Timestamp Recording**: Each match includes precise completion timestamp
 - **Winner/Loser Attribution**: Clear result tracking linked to player accounts
 - **Historical Data**: Persistent record of all matches played
 
-### 📈 Statistics System
+### Statistics System
 - **Real-time Calculation**: Win/loss counts computed dynamically from game history
 - **Pre-game Display**: Statistics shown before each match starts
 - **Post-game Updates**: Updated statistics displayed after match completion
 - **Player Profiles**: Individual statistics tracking per registered user
-
-### 🗃️ Database Schema
 
 #### Players Table
 ```sql

@@ -21,4 +21,35 @@ public class Player {
     public String getName() {
         return name;
     }
+
+    /**
+     * Override equals to compare players by name.
+     * @param obj the object to compare
+     * @return true if players have the same name
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Player player = (Player) obj;
+        return name != null ? name.equals(player.name) : player.name == null;
+    }
+
+    /**
+     * Override hashCode to be consistent with equals.
+     * @return hash code based on player name
+     */
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
+    }
+
+    /**
+     * Override toString for better debugging.
+     * @return string representation of the player
+     */
+    @Override
+    public String toString() {
+        return "Player{name='" + name + "'}";
+    }
 }

@@ -1,11 +1,11 @@
 package com.junglechess.controller;
 
+import java.util.Scanner;
+
 import com.junglechess.db.DatabaseManager;
 import com.junglechess.game.Game;
 import com.junglechess.model.Player;
 import com.junglechess.view.ConsoleView;
-
-import java.util.Scanner;
 
 /**
  * Controller component that manages user input and coordinates between the Game logic and ConsoleView.
@@ -52,9 +52,8 @@ public class GameController {
         // Display player statistics
         System.out.println("\n=== PLAYER STATISTICS ===");
         dbManager.getPlayerHistory(player1.getName());
-        dbManager.getPlayerHistory(player2.getName());
-        
-        ConsoleView.showMessage("Starting game with " + player1.getName() + " (Red) vs " + player2.getName() + " (Blue)...");
+        dbManager.getPlayerHistory(player2.getName());          ConsoleView.showMessage(">>> Starting epic jungle battle: " + player1.getName().toUpperCase() + " [R] vs " + player2.getName().toUpperCase() + " [B]");
+        ConsoleView.showMessage(">>> May the best strategist win!");
         ConsoleView.showMessage("");
           // Main game loop
         while (!game.isGameOver()) {
@@ -99,17 +98,23 @@ public class GameController {
     }    /**
      * Displays the welcome message and initial instructions.
      */
-    private void displayWelcomeMessage() {
+    private void displayWelcomeMessage() {        System.out.println();
+        System.out.println("=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+        System.out.println("+======================================================================+");
+        System.out.println("|                    *** WELCOME TO XOU DOU QI ***                   |");
+        System.out.println("|                        *** JUNGLE CHESS ***                        |");
+        System.out.println("|                                                                      |");
+        System.out.println("|  [!] Battle in the jungle with powerful animals!                    |");
+        System.out.println("|  [>] Goal: Enter your opponent's sanctuary to win!                  |");
+        System.out.println("|  [*] Strategy: Use traps, rivers, and animal powers wisely!         |");
+        System.out.println("+======================================================================+");
+        System.out.println("=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         System.out.println();
-        System.out.println("========================================");
-        System.out.println("    Welcome to Xou Dou Qi (Jungle Chess)");
-        System.out.println("========================================");
-        System.out.println();
-        System.out.println("Game Setup Complete!");
-        System.out.println("Type 'help' at any time to see instructions.");
+        System.out.println(">>> Game Setup Complete! <<<");
+        System.out.println(">>> Type 'help' at any time to see instructions.");
         System.out.println();
         
-        // Display the legend once at startup
+        // Display the enhanced legend once at startup
         ConsoleView.displayGameLegend();
     }
 

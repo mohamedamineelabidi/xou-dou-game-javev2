@@ -15,9 +15,7 @@ public class Game {
     private Board board;
     private Player player1;
     private Player player2;
-    private Player currentPlayer;
-
-    /**
+    private Player currentPlayer;    /**
      * Constructor to initialize a new game with two players.
      * @param player1 the first player
      * @param player2 the second player
@@ -25,7 +23,7 @@ public class Game {
     public Game(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
-        this.board = new Board();
+        this.board = new Board(player1, player2); // Pass players to board
         this.currentPlayer = player1; // Player 1 starts the game
     }
 
@@ -37,10 +35,9 @@ public class Game {
      * @param toRow the destination row
      * @param toCol the destination column
      * @return true if move was successful, false otherwise
-     */
-    public boolean movePiece(Player player, int fromRow, int fromCol, int toRow, int toCol) {
+     */    public boolean movePiece(Player player, int fromRow, int fromCol, int toRow, int toCol) {
         // Check if it's the player's turn
-        if (player != currentPlayer) {
+        if (!player.equals(currentPlayer)) {
             return false;
         }
 
@@ -54,7 +51,20 @@ public class Game {
 
         // Check if there's a piece at the source square and it belongs to the player
         Piece piece = sourceSquare.getPiece();
-        if (piece == null || piece.getOwner() != player) {
+        
+        // DEBUG: Add debug output
+        System.out.println("=== MOVE DEBUG ===");
+        System.out.println("From: (" + fromRow + "," + fromCol + ") To: (" + toRow + "," + toCol + ")");
+        System.out.println("Piece at source: " + (piece != null ? piece.getRank() : "null"));
+        if (piece != null) {
+            System.out.println("Piece owner: '" + piece.getOwner().getName() + "'");
+            System.out.println("Piece owner object: " + piece.getOwner());
+        }
+        System.out.println("Current player: '" + player.getName() + "'");
+        System.out.println("Current player object: " + player);        System.out.println("Players equal (==): " + (piece != null ? piece.getOwner().equals(player) : "N/A"));
+        System.out.println("==================");
+        
+        if (piece == null || !piece.getOwner().equals(player)) {
             return false;
         }
 
@@ -67,11 +77,9 @@ public class Game {
             } else {
                 return false;
             }
-        }
-
-        // Check if destination is the player's own sanctuary
-        if ((player == player1 && destSquare.getType() == SquareType.SANCTUAIRE_RED) ||
-            (player == player2 && destSquare.getType() == SquareType.SANCTUAIRE_BLUE)) {
+        }        // Check if destination is the player's own sanctuary
+        if ((player.equals(player1) && destSquare.getType() == SquareType.SANCTUAIRE_RED) ||
+            (player.equals(player2) && destSquare.getType() == SquareType.SANCTUAIRE_BLUE)) {
             return false;
         }
 
@@ -82,12 +90,11 @@ public class Game {
 
         // Check if destination has a piece that can be captured
         Piece targetPiece = destSquare.getPiece();
-        if (targetPiece != null) {
-            // Trap rule: Any piece in an enemy trap can be captured by any piece
+        if (targetPiece != null) {            // Trap rule: Any piece in an enemy trap can be captured by any piece
             boolean isInEnemyTrap = 
-                (targetPiece.getOwner() == player1 && destSquare.getType() == SquareType.PIEGE && 
+                (targetPiece.getOwner().equals(player1) && destSquare.getType() == SquareType.PIEGE && 
                  isBluePlayerTrap(toRow, toCol)) ||
-                (targetPiece.getOwner() == player2 && destSquare.getType() == SquareType.PIEGE && 
+                (targetPiece.getOwner().equals(player2) && destSquare.getType() == SquareType.PIEGE && 
                  isRedPlayerTrap(toRow, toCol));
                 
             // Check if the piece can capture the target
@@ -98,11 +105,9 @@ public class Game {
 
         // All validations passed, execute the move
         destSquare.setPiece(piece);
-        sourceSquare.setPiece(null);
-
-        // Check for win condition
-        if ((player == player1 && destSquare.getType() == SquareType.SANCTUAIRE_BLUE) ||
-            (player == player2 && destSquare.getType() == SquareType.SANCTUAIRE_RED)) {
+        sourceSquare.setPiece(null);        // Check for win condition
+        if ((player.equals(player1) && destSquare.getType() == SquareType.SANCTUAIRE_BLUE) ||
+            (player.equals(player2) && destSquare.getType() == SquareType.SANCTUAIRE_RED)) {
             // Player has entered opponent's sanctuary, game is won
             return true;
         }
@@ -234,13 +239,11 @@ public class Game {
      */
     private boolean isBluePlayerTrap(int row, int col) {
         return (row == 0 && col == 2) || (row == 0 && col == 4) || (row == 1 && col == 3);
-    }
-
-    /**
+    }    /**
      * Switches the current player.
      */
     public void switchTurn() {
-        currentPlayer = (currentPlayer == player1) ? player2 : player1;
+        currentPlayer = (currentPlayer.equals(player1)) ? player2 : player1;
     }
 
     /**
@@ -255,10 +258,9 @@ public class Game {
                 if (square != null) {
                     SquareType type = square.getType();
                     Piece piece = square.getPiece();
-                    
-                    if (piece != null) {
-                        if ((type == SquareType.SANCTUAIRE_BLUE && piece.getOwner() == player1) ||
-                            (type == SquareType.SANCTUAIRE_RED && piece.getOwner() == player2)) {
+                      if (piece != null) {
+                        if ((type == SquareType.SANCTUAIRE_BLUE && piece.getOwner().equals(player1)) ||
+                            (type == SquareType.SANCTUAIRE_RED && piece.getOwner().equals(player2))) {
                             return true;
                         }
                     }

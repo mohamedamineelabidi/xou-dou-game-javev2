@@ -6,11 +6,18 @@ package com.junglechess.model;
  */
 public class Board {
     private Square[][] grid = new Square[9][7];
+    private Player playerRed;
+    private Player playerBlue;
     
     /**
      * Constructor to initialize the board with all squares and pieces.
+     * @param player1 the first player (Red pieces)
+     * @param player2 the second player (Blue pieces)
      */
-    public Board() {
+    public Board(Player player1, Player player2) {
+        this.playerRed = player1;
+        this.playerBlue = player2;
+        
         // Initialize all squares with default NORMAL type
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 7; col++) {
@@ -20,6 +27,14 @@ public class Board {
         
         // Set up the board with special zones and pieces
         setupBoard();
+    }
+    
+    /**
+     * Default constructor for backwards compatibility.
+     * Creates default players.
+     */
+    public Board() {
+        this(new Player("Red"), new Player("Blue"));
     }
     
     /**
@@ -42,12 +57,7 @@ public class Board {
      * - Trap zones (PIEGE)
      * - Sanctuaries (SANCTUAIRE_RED and SANCTUAIRE_BLUE)
      * - Initial placement of all 16 animal pieces
-     */
-    private void setupBoard() {
-        // Create two players: Red (Player 1) and Blue (Player 2)
-        Player playerRed = new Player("Red");
-        Player playerBlue = new Player("Blue");
-        
+     */    private void setupBoard() {
         // Set up river (RIVIERE) - Columns 1-5, Rows 3-5
         for (int row = 3; row < 6; row++) {
             for (int col = 1; col < 6; col++) {
@@ -73,7 +83,7 @@ public class Board {
         grid[8][4] = new Square(SquareType.PIEGE);
         grid[7][3] = new Square(SquareType.PIEGE);
         
-        // Place Blue player's pieces
+        // Place Blue player's pieces (using playerBlue)
         grid[0][0] = new Square(SquareType.NORMAL, new Piece(Rank.LION, playerBlue));
         grid[0][6] = new Square(SquareType.NORMAL, new Piece(Rank.TIGRE, playerBlue));
         grid[1][1] = new Square(SquareType.NORMAL, new Piece(Rank.CHIEN, playerBlue));
@@ -83,7 +93,7 @@ public class Board {
         grid[2][4] = new Square(SquareType.NORMAL, new Piece(Rank.LOUP, playerBlue));
         grid[2][6] = new Square(SquareType.NORMAL, new Piece(Rank.ELEPHANT, playerBlue));
         
-        // Place Red player's pieces (mirror image of Blue's pieces)
+        // Place Red player's pieces (using playerRed - mirror image of Blue's pieces)
         grid[8][0] = new Square(SquareType.NORMAL, new Piece(Rank.TIGRE, playerRed));
         grid[8][6] = new Square(SquareType.NORMAL, new Piece(Rank.LION, playerRed));
         grid[7][1] = new Square(SquareType.NORMAL, new Piece(Rank.CHAT, playerRed));
