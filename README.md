@@ -2,14 +2,25 @@
 
 A complete two-player command-line implementation of **Xou Dou Qi** (鬥獸棋), also known as *Dou Shou Qi* or *Jungle Chess*. This classic Chinese strategy board game features animal pieces with unique movement and capture rules in a jungle-themed battlefield.
 
-## 🎥 Game Demonstration
+## 🎥 Video Introduction
 
-### YouTube Video Demo
-Watch the complete gameplay demonstration and tutorial:
+### 📺 Complete Gameplay Demonstration
 
-[[Xou Dou Qi Game Demo](https://img.youtube.com/vi/nBKGPlFCPr0/maxresdefault.jpg)](https://youtu.be/nBKGPlFCPr0?si=tE_Hwumf7tTGw4eA)
+<div align="center">
 
-🎬 **[Click here to watch the full gameplay demonstration on YouTube →](https://youtu.be/nBKGPlFCPr0?si=tE_Hwumf7tTGw4eA)**
+[![Xou Dou Qi Game Demo](https://img.youtube.com/vi/nBKGPlFCPr0/maxresdefault.jpg)](https://youtu.be/nBKGPlFCPr0?si=tE_Hwumf7tTGw4eA)
+
+</div>
+
+### 📋 Video Contents
+• **[Game Demo](https://youtu.be/nBKGPlFCPr0?si=tE_Hwumf7tTGw4eA)** - Complete gameplay walkthrough  
+• **Overview of Architecture**, **Technologies** & **Game Features**  
+
+---
+
+**We suggest watching the video to understand the complete game mechanics and features.**
+
+*The demonstration shows authentication, gameplay, special moves, and victory conditions in action.*
 
 ## 📸 Console Screenshots
 
