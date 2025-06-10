@@ -2,6 +2,41 @@
 
 A complete two-player command-line implementation of **Xou Dou Qi** (鬥獸棋), also known as *Dou Shou Qi* or *Jungle Chess*. This classic Chinese strategy board game features animal pieces with unique movement and capture rules in a jungle-themed battlefield.
 
+## 🎥 Game Demonstration
+
+### YouTube Video Demo
+Watch the complete gameplay demonstration and tutorial:
+
+[![Xou Dou Qi Game Demo](https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
+
+🎬 **[Click here to watch the full gameplay demonstration on YouTube →](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)**
+
+*Replace `YOUR_VIDEO_ID` with your actual YouTube video ID when available*
+
+## 📸 Console Screenshots
+
+### Game Interface Overview
+![Game Board Console View](screenshots/game-board-overview.png)
+*Main game board display with pieces, colored squares, and player turn indicator*
+
+### Player Authentication System
+![Login System](screenshots/authentication-system.png)
+*User login and registration interface with database integration*
+
+### Game Statistics Display
+![Statistics View](screenshots/player-statistics.png)
+*Player statistics and match history tracking system*
+
+### Interactive Help System
+![Help System](screenshots/help-system.png)
+*Comprehensive in-game help with rules and command reference*
+
+### Victory Screen
+![Game Victory](screenshots/victory-screen.png)
+*Game completion screen with winner announcement and updated statistics*
+
+*Note: Screenshots will be added to the `screenshots/` folder when available*
+
 ## Game Overview
 
 Xou Dou Qi is an ancient Chinese board game where two players command armies of animals trying to reach the opponent's sanctuary. Each animal has different strengths and special abilities, creating a rich strategic experience.
@@ -446,3 +481,38 @@ bob: 1 win, 4 losses
 
 Thanks for playing Xou Dou Qi!
 ```
+
+## 🖼️ Additional Console Interface Examples
+
+### Detailed Console Screenshots
+
+#### 1. Startup and Authentication Flow
+![Startup Screen](screenshots/startup-flow.png)
+*Complete startup sequence showing welcome message, player authentication, and initial statistics*
+
+#### 2. Game Board with Move Validation
+![Move Validation](screenshots/move-validation.png)
+*Console showing invalid move attempts with helpful error messages and suggestions*
+
+#### 3. Special Game Situations
+![Special Moves](screenshots/special-moves.png)
+*Examples of special moves: River crossings, Lion/Tiger jumps, and Rat vs Elephant captures*
+
+#### 4. Help System Detailed View
+![Detailed Help](screenshots/detailed-help.png)
+*Complete help system showing rules, piece abilities, and command examples*
+
+#### 5. Database Integration Features
+![Database Features](screenshots/database-integration.png)
+*Player registration, login process, and statistics tracking in action*
+
+#### 6. Game Completion and Results
+![Game Results](screenshots/game-completion.png)
+*Victory announcement, final board state, and updated player statistics*
+
+### Console Interface Features
+- **ANSI Color Support**: Red and Blue pieces with colored special squares
+- **ASCII Compatibility**: Works on all terminal types (Windows, Mac, Linux)
+- **Clear Visual Hierarchy**: Easy-to-read board layout with proper spacing
+- **Interactive Feedback**: Real-time move validation and helpful error messages
+- **Professional Formatting**: Bordered displays and organized information layout
