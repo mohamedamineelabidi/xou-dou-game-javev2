@@ -139,6 +139,70 @@ The enhanced console interface includes:
 - **Comprehensive Help**: Complete rules reference with beginner tips
 - **ASCII Compatibility**: All symbols display correctly on Windows/Mac/Linux terminals
 
+## 🔧 Troubleshooting
+
+### Common Issues & Quick Fixes
+
+#### ❌ Issue: Game won't start / ClassNotFoundException
+**Solution:**
+```bash
+# Make sure you're in the XouDouQi directory
+cd XouDouQi
+
+# Use the batch script (recommended)
+run-game.bat
+
+# Or ensure correct classpath
+java -cp "target\classes;sqlite-jdbc-3.36.0.3.jar" com.junglechess.Main
+```
+
+#### ❌ Issue: Colors not displaying properly
+**Solution:**
+- **Windows**: Use Windows Terminal or PowerShell
+- **Legacy CMD**: Colors may not display - functionality still works
+- **VS Code**: Use integrated terminal for best color support
+
+#### ❌ Issue: Database errors or SQLite issues
+**Solution:**
+```bash
+# Check if SQLite JAR is present
+dir sqlite-jdbc-3.36.0.3.jar
+
+# Delete database to reset (optional)
+del junglechess.db
+
+# Run database test
+java -cp "target\classes;sqlite-jdbc-3.36.0.3.jar" com.junglechess.test.DatabaseTest
+```
+
+#### ❌ Issue: Java version compatibility
+**Solution:**
+```bash
+# Check Java version (requires Java 11+)
+java -version
+
+# Recompile if needed
+javac -cp "sqlite-jdbc-3.36.0.3.jar" -d target/classes src/main/java/com/junglechess/*/*.java src/main/java/com/junglechess/*.java
+```
+
+#### ❌ Issue: Characters display as boxes/question marks
+**Solution:**
+- Use UTF-8 compatible terminal
+- Try `chcp 65001` in Windows CMD
+- Use Windows Terminal for best Unicode support
+
+### 💡 Quick Tips
+- Type `help` in-game for complete rules and commands
+- Use coordinates like `A1`, `G7` for moves
+- Press `Ctrl+C` to force quit if needed
+- Database auto-creates on first run
+
+### 🆘 Still Having Issues?
+1. Check that you're in the correct directory (`XouDouQi/`)
+2. Verify Java 11+ is installed
+3. Ensure `sqlite-jdbc-3.36.0.3.jar` exists
+4. Try the batch script: `run-game.bat`
+
 ## Tech Stack
 
 - **Language:** Java 11+
