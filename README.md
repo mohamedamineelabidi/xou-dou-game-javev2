@@ -1,52 +1,140 @@
-# Xou Dou Qi (Jungle Chess) - Java Implementation
-
-A complete two-player command-line implementation of **Xou Dou Qi** (鬥獸棋), also known as *Dou Shou Qi* or *Jungle Chess*. This classic Chinese strategy board game features animal pieces with unique movement and capture rules in a jungle-themed battlefield.
-
-## 🎥 Video Introduction
-
-### 📺 Complete Gameplay Demonstration
+# 🎮 Xou Dou Qi (Jungle Chess) - Java Implementation
 
 <div align="center">
 
-[![Xou Dou Qi Game Demo](https://img.youtube.com/vi/nBKGPlFCPr0/maxresdefault.jpg)](https://youtu.be/nBKGPlFCPr0?si=tE_Hwumf7tTGw4eA)
+![Java](https://img.shields.io/badge/Java-11+-orange?style=for-the-badge&logo=java)
+![SQLite](https://img.shields.io/badge/SQLite-3.36-blue?style=for-the-badge&logo=sqlite)
+![Maven](https://img.shields.io/badge/Maven-3.6+-red?style=for-the-badge&logo=apache-maven)
+![Platform](https://img.shields.io/badge/Platform-Windows%20|%20macOS%20|%20Linux-green?style=for-the-badge)
 
 </div>
 
-### 📋 Video Contents
-• **[Game Demo](https://youtu.be/nBKGPlFCPr0?si=tE_Hwumf7tTGw4eA)** - Complete gameplay walkthrough  
-• **Overview of Architecture**, **Technologies** & **Game Features**  
+A complete two-player command-line implementation of **Xou Dou Qi** (鬥獸棋), also known as *Dou Shou Qi* or *Jungle Chess*. This classic Chinese strategy board game features animal pieces with unique movement and capture rules in a jungle-themed battlefield.
+
+### 🌟 Key Features
+- 🎯 **Complete Game Logic** - All traditional Jungle Chess rules
+- 🗄️ **Database Integration** - Player profiles & match history  
+- 🎨 **Enhanced Console UI** - ANSI colors & professional formatting
+- 🔐 **User Authentication** - Secure login system
+- 📊 **Statistics Tracking** - Win/loss records & game history
+- 🧪 **Comprehensive Testing** - Unit tests & quality assurance
+
+## 📋 Table of Contents
+- [🎥 Video Demonstration](#-video-demonstration)
+- [🚀 Quick Start](#-quick-start)
+- [📸 Game Screenshots](#-game-screenshots)
+- [🎯 Game Overview](#-game-overview)
+- [🦁 Game Pieces and Hierarchy](#-game-pieces-and-hierarchy)
+- [🗺️ Board Layout](#️-board-layout)
+- [✨ Features](#-features)
+- [🎮 Game Commands](#-game-commands)
+- [🖥️ Console Interface Features](#️-console-interface-features)
+- [🔧 Troubleshooting](#-troubleshooting)
+- [🛠️ Tech Stack](#️-tech-stack)
+- [🗄️ Database Features](#️-database-features)
+- [🛠️ Build and Run Instructions](#️-build-and-run-instructions)
+- [✅ Final Release Status](#-final-release-status-phase-5-completed)
+- [🏗️ Project Architecture](#️-project-architecture)
+- [📊 Database Schema](#-database-schema)
+- [🧪 Testing](#-testing)
+- [📁 Project Files](#-project-files)
+- [🎮 Gameplay Example](#-gameplay-example)
+- [🖼️ Additional Console Interface Examples](#️-additional-console-interface-examples)
 
 ---
 
-**We suggest watching the video to understand the complete game mechanics and features.**
+## 🎥 Video Demonstration
 
-*The demonstration shows authentication, gameplay, special moves, and victory conditions in action.*
+### 📺 Complete Gameplay Walkthrough
 
-## 📸 Console Screenshots
+<div align="center">
+  
+[![Xou Dou Qi Game Demo](https://img.youtube.com/vi/nAGFOe93a8Y/maxresdefault.jpg)](https://youtu.be/nAGFOe93a8Y)
 
-### Game Interface Overview
-![Game Board Console View](screenshots/game-board-overview.png)
+**[🎮 Watch Full Game Demo](https://youtu.be/nAGFOe93a8Y)**
+
+</div>
+
+### 📋 What You'll See in the Video
+- **🎯 Complete Gameplay** - Full match from start to victory
+- **🔐 Authentication System** - Player login and registration
+- **🏗️ Game Architecture** - Technologies and design overview
+- **⚡ Special Moves** - Unique animal abilities in action
+- **📊 Statistics Tracking** - Database integration features
+
+> **💡 Tip:** Watch the video first to understand the complete game mechanics and features before diving into the code!
+
+---
+
+## 🚀 Quick Start
+
+Ready to play? Get started in just 3 steps:
+
+### 1️⃣ Prerequisites
+```powershell
+# Check Java version (requires Java 11+)
+java -version
+```
+
+### 2️⃣ Navigate to Game Directory
+```powershell
+cd "c:\Users\elabi\xou-dou-qi-clone\xou-dou-game-javev2\XouDouQi"
+```
+
+### 3️⃣ Run the Game
+```powershell
+# Method 1: Use the batch script (recommended)
+.\run-game.bat
+
+# Method 2: Direct command
+java -cp "target\classes;sqlite-jdbc-3.36.0.3.jar" com.junglechess.Main
+```
+
+### 🎮 First Time Setup
+1. **Create player accounts** for both players
+2. **Start playing** - the game will guide you through the rules
+3. **Type `help`** in-game for complete command reference
+
+---
+
+## 📸 Game Screenshots
+
+<div align="center">
+
+### 🎮 Game Interface Overview
+![Game Board Console View](screenshots/gameoveriew.png)  
 *Main game board display with pieces, colored squares, and player turn indicator*
 
-### Player Authentication System
-![Login System](screenshots/authentication-system.png)
+### 🔐 Player Authentication System  
+![Login System](screenshots/authentification.png)  
 *User login and registration interface with database integration*
 
-### Game Statistics Display
-![Statistics View](screenshots/player-statistics.png)
+### 📊 Game Statistics Display
+![Statistics View](screenshots/playerstatbegin.png)  
 *Player statistics and match history tracking system*
 
-### Interactive Help System
-![Help System](screenshots/help-system.png)
+### ❓ Interactive Help System
+![Help System](screenshots/help.png)  
 *Comprehensive in-game help with rules and command reference*
 
-### Victory Screen
-![Game Victory](screenshots/victory-screen.png)
-*Game completion screen with winner announcement and updated statistics*
+### 🏆 Victory Screen & Updated Statistics
+![Game Victory](screenshots/gameoverwinner.png)  
+*Game completion screen with winner announcement*
 
-*Note: Screenshots will be added to the `screenshots/` folder when available*
+![Updated Statistics](screenshots/updatedstatics.png)  
+*Player statistics updated after match completion*
 
-## Game Overview
+### 🗄️ Database Integration
+![Database System](screenshots/dbsqlite.png)  
+*SQLite database integration with persistent player data*
+
+### 🎯 Welcome Screen
+![Welcome Game](screenshots/welcomeGame.png)  
+*Game startup and welcome interface*
+
+</div>
+
+## 🎯 Game Overview
 
 Xou Dou Qi is an ancient Chinese board game where two players command armies of animals trying to reach the opponent's sanctuary. Each animal has different strengths and special abilities, creating a rich strategic experience.
 
@@ -54,7 +142,7 @@ Xou Dou Qi is an ancient Chinese board game where two players command armies of 
 - **Primary Goal**: Move any of your pieces into the opponent's sanctuary (den)
 - **Alternative**: Capture all opponent pieces (rare)
 
-## Game Pieces and Hierarchy
+## 🦁 Game Pieces and Hierarchy
 
 Animals are ranked by strength, with higher-ranked animals capturing lower-ranked ones:
 
@@ -75,7 +163,7 @@ Animals are ranked by strength, with higher-ranked animals capturing lower-ranke
 - **Jumping**: Lions and Tigers can jump over rivers (if no Rat blocks the path)
 - **Traps**: Pieces in enemy traps lose all defensive power and can be captured by any enemy piece
 
-## Board Layout
+## 🗺️ Board Layout
 
 ```
    A B C D E F G
@@ -101,7 +189,7 @@ Animals are ranked by strength, with higher-ranked animals capturing lower-ranke
 - `ELE`, `LIO`, `TIG`, etc. = Animal pieces (Red/Blue colored)
 - `-` = Normal land square
 
-## Features
+## ✨ Features
 
 ### Core Game Features
 - **Complete Game Logic**: Full implementation of all Jungle Chess rules
@@ -127,7 +215,7 @@ Animals are ranked by strength, with higher-ranked animals capturing lower-ranke
 - **Batch Scripts**: Convenient launch scripts with proper classpath
 - **Cross-Platform Compatibility**: ASCII-safe display works on all terminal environments
 
-## Game Commands
+## 🎮 Game Commands
 
 Once the game starts, you can use these commands:
 
@@ -140,7 +228,7 @@ Once the game starts, you can use these commands:
 - **Rows**: 1-9 (top to bottom)  
 - **Examples**: A1 (top-left), G9 (bottom-right), D5 (center)
 
-## Console Interface Features
+## 🖥️ Console Interface Features
 
 The enhanced console interface includes:
 - **Interactive Legend**: Displays once at startup with color-coded symbols
@@ -214,7 +302,7 @@ javac -cp "sqlite-jdbc-3.36.0.3.jar" -d target/classes src/main/java/com/junglec
 3. Ensure `sqlite-jdbc-3.36.0.3.jar` exists
 4. Try the batch script: `run-game.bat`
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 - **Language:** Java 11+
 - **Build Tool:** Maven 3.6+
@@ -226,7 +314,7 @@ javac -cp "sqlite-jdbc-3.36.0.3.jar" -d target/classes src/main/java/com/junglec
 - **Dependencies:** SQLite JDBC, JUnit (test scope)
 - **Compatibility:** Cross-platform support for Windows, macOS, and Linux terminals
 
-## Database Features
+## 🗄️ Database Features
 
 ### User Management System
 - **Player Registration**: Create accounts with unique usernames
@@ -557,35 +645,32 @@ Thanks for playing Xou Dou Qi!
 
 ## 🖼️ Additional Console Interface Examples
 
-### Detailed Console Screenshots
+### 🎯 Console Interface Highlights
 
-#### 1. Startup and Authentication Flow
-![Startup Screen](screenshots/startup-flow.png)
-*Complete startup sequence showing welcome message, player authentication, and initial statistics*
+The game features a rich console experience with:
 
-#### 2. Game Board with Move Validation
-![Move Validation](screenshots/move-validation.png)
-*Console showing invalid move attempts with helpful error messages and suggestions*
-
-#### 3. Special Game Situations
-![Special Moves](screenshots/special-moves.png)
-*Examples of special moves: River crossings, Lion/Tiger jumps, and Rat vs Elephant captures*
-
-#### 4. Help System Detailed View
-![Detailed Help](screenshots/detailed-help.png)
-*Complete help system showing rules, piece abilities, and command examples*
-
-#### 5. Database Integration Features
-![Database Features](screenshots/database-integration.png)
-*Player registration, login process, and statistics tracking in action*
-
-#### 6. Game Completion and Results
-![Game Results](screenshots/game-completion.png)
-*Victory announcement, final board state, and updated player statistics*
-
-### Console Interface Features
+#### 🖥️ Console Interface Features
 - **ANSI Color Support**: Red and Blue pieces with colored special squares
-- **ASCII Compatibility**: Works on all terminal types (Windows, Mac, Linux)
+- **ASCII Compatibility**: Works on all terminal types (Windows, Mac, Linux)  
 - **Clear Visual Hierarchy**: Easy-to-read board layout with proper spacing
 - **Interactive Feedback**: Real-time move validation and helpful error messages
 - **Professional Formatting**: Bordered displays and organized information layout
+
+#### 🎨 Visual Design Elements
+- **Color-coded Pieces**: Red and Blue team differentiation
+- **Special Square Highlighting**: Rivers (cyan), Traps (yellow), Sanctuaries (colored)
+- **Clear Turn Indicators**: Visual player turn display with colored boxes
+- **Comprehensive Legends**: Symbol explanations and piece abilities reference
+
+---
+
+## 🏆 Conclusion
+
+This Xou Dou Qi implementation provides a complete, professional-grade gaming experience with:
+- **🎮 Full Game Logic** - All traditional Jungle Chess rules implemented
+- **🗄️ Database Integration** - Persistent player profiles and match history  
+- **🎨 Enhanced UI** - Beautiful console interface with ANSI colors
+- **🧪 Quality Assurance** - Comprehensive testing and error handling
+- **📚 Documentation** - Detailed guides and in-game help system
+
+**Ready to play?** Follow the [build instructions](#-build-and-run-instructions) to get started!
